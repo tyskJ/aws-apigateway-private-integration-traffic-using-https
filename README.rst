@@ -81,7 +81,7 @@ Amazon API Gateway のプライベート統合トラフィックを HTTPS 化す
 
 .. note::
 
-  - :ref: `before-working`
+  - :ref:`before-working`
 
 2. 変数ファイル作成
 ---------------------------------------------------------------------
