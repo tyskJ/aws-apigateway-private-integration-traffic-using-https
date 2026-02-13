@@ -28,7 +28,7 @@ Amazon API Gateway のプライベート統合トラフィックを HTTPS 化す
 前提条件
 =====================================================================
 * *AdministratorAccess* がアタッチされているIAMユーザーを作成していること
-* 実作業は *aws* フォルダで実施すること
+* 実作業は *envs* フォルダで実施すること
 * 以下コマンドを実行し、*admin* プロファイルを作成していること (デフォルトリージョンは *ap-northeast-1* )
 
 .. code-block:: bash
@@ -66,7 +66,7 @@ Amazon API Gateway のプライベート統合トラフィックを HTTPS 化す
 
 .. note::
 
-  * *aws* フォルダ配下に作成すること
+  * *envs* フォルダ配下に作成すること
 
 .. code-block:: bash
     
@@ -86,7 +86,7 @@ Amazon API Gateway のプライベート統合トラフィックを HTTPS 化す
 
 .. note::
 
-  * *aws* フォルダ配下に作成すること
+  * *envs* フォルダ配下に作成すること
 
 .. code-block:: bash
     
@@ -136,8 +136,20 @@ Amazon API Gateway のプライベート統合トラフィックを HTTPS 化す
 =====================================================================
 リファレンス
 ---------------------------------------------------------------------
-* ` <>`_
+* `terraform_data resource reference <https://developer.hashicorp.com/terraform/language/resources/terraform-data>`_
+* `Backend block configuration overview <https://developer.hashicorp.com/terraform/language/backend#partial-configuration>`_
+* `All Image Families - Oracle Cloud Infrastructure Documentation/Images <https://docs.oracle.com/en-us/iaas/images/>`_
+* `タグおよびタグ・ネームスペースの概念 - Oracle Cloud Infrastructureドキュメント <https://docs.oracle.com/ja-jp/iaas/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm#Who>`_
+* `About the DNS Domains and Hostnames - Oracle Cloud Infrastructure Documentation <https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/dns.htm#About>`_
 
 ブログ
 ---------------------------------------------------------------------
-* ` <>`_
+* `Terraformでmoduleを使わずに複数環境を構築する - Zenn <https://zenn.dev/smartround_dev/articles/5e20fa7223f0fd>`_
+* `Terraformでmoduleを使わずに複数環境を構築して感じた利点 - SpeakerDeck <https://speakerdeck.com/shonansurvivors/building-multiple-environments-without-using-modules-in-terraform>`_
+* `個人的備忘録：Terraformディレクトリ整理の個人メモ（ファイル分割編） - Qiita <https://qiita.com/free-honda/items/5484328d5b52326ed87e>`_
+* `Terraformの auto.tfvars を使うと、環境管理がずっと楽になる話 - note <https://note.com/minato_kame/n/neb271c81e0e2>`_
+* `Terraform v1.9 では null_resource を安全に terraform_data に置き換えることができる - Zenn <https://zenn.dev/terraform_jp/articles/tf-null-resource-to-terraform-data>`_
+* `Terraform cloudinit Provider を使って MIME multi-part 形式の cloud-init 設定を管理する - HatenaBlog <https://chaya2z.hatenablog.jp/entry/2025/10/15/040000>`_
+* `【Terraform🧑🏻‍🚀】tfstateファイルの分割パターンとディレクトリ構成への適用 <https://hiroki-hasegawa.hatenablog.jp/entry/2023/07/05/001756>`_
+* `Terraformで自己署名証明書の作成からALBの適用までを一発で実施する - DevelopersIO <https://dev.classmethod.jp/articles/terraform-self-signed-certificate-alb-setup/>`_
+* `aws login コマンドの認証情報で Terraform を実行する - Zenn <https://zenn.dev/yukit7s/articles/4a81811d64a200>`_
