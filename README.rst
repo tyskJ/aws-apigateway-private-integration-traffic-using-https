@@ -47,7 +47,7 @@ Amazon API Gateway のプライベート統合トラフィックを HTTPS 化す
 ---------------------------------------------------------------------
 * `GitHub <https://github.com/tyskJ/common-environment-setup>`_ を参照
 
-.. _before-working:
+.. _sample:
 
 事前作業(2)
 =====================================================================
@@ -79,7 +79,7 @@ Amazon API Gateway のプライベート統合トラフィックを HTTPS 化す
     profile = "admin"
     EOF
 
-:ref:`before-working`
+:ref:`sample`
 
 2. 変数ファイル作成
 ---------------------------------------------------------------------
