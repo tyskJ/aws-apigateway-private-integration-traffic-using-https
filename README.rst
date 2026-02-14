@@ -139,6 +139,7 @@ Amazon API Gateway のプライベート統合トラフィックを HTTPS 化す
 ---------------------------------------------------------------------
 * `terraform_data resource reference <https://developer.hashicorp.com/terraform/language/resources/terraform-data>`_
 * `Backend block configuration overview <https://developer.hashicorp.com/terraform/language/backend#partial-configuration>`_
+* `Retain API GW Deployment History for Stage #42625 <https://github.com/hashicorp/terraform-provider-aws/issues/42625>`_
 
 ブログ
 ---------------------------------------------------------------------
