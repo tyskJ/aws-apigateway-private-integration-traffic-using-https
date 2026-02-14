@@ -35,6 +35,24 @@ resource "aws_api_gateway_rest_api" "regional_target_ssl_by_acm" {
 /************************************************************
 Resource Policy
 ************************************************************/
+data "aws_iam_policy_document" "regional_target_ssl_by_acm" {
+  version = "2012-10-17"
+  statement {
+    effect = "Allow"
+    principals {
+      type        = "*"
+      identifiers = ["*"]
+    }
+    actions   = ["execute-api:Invoke"]
+    resources = ["${aws_api_gateway_rest_api.regional_target_ssl_by_acm.execution_arn}/*"]
+    condition {
+      test     = "IpAddress"
+      variable = "aws:SourceIp"
+      values   = var.source_ip
+    }
+  }
+}
+
 resource "aws_api_gateway_rest_api_policy" "resource_policy_for_regional_target_ssl_by_acm" {
   rest_api_id = aws_api_gateway_rest_api.regional_target_ssl_by_acm.id
   policy      = data.aws_iam_policy_document.regional_target_ssl_by_acm.json
