@@ -250,6 +250,153 @@ resource "aws_api_gateway_method_response" "no_import_http_selfsigned_get" {
   response_parameters = {}
 }
 
+/************************************************************
+Method - https/acm GET
+************************************************************/
+### Method Request
+resource "aws_api_gateway_method" "no_import_https_acm_get" {
+  rest_api_id          = aws_api_gateway_rest_api.no_import.id
+  resource_id          = aws_api_gateway_resource.no_import_https_acm.id
+  http_method          = "GET"
+  authorization        = "NONE"
+  authorization_scopes = []
+  authorizer_id        = null
+  api_key_required     = false
+  request_validator_id = null
+  operation_name       = null
+  request_parameters   = {}
+  request_models       = {}
+}
+### Integration Request
+resource "aws_api_gateway_integration" "no_import_https_acm_get" {
+  rest_api_id             = aws_api_gateway_rest_api.no_import.id
+  resource_id             = aws_api_gateway_resource.no_import_https_acm.id
+  http_method             = aws_api_gateway_method.no_import_https_acm_get.http_method
+  type                    = "HTTP_PROXY"
+  connection_type         = "VPC_LINK"
+  response_transfer_mode  = "BUFFERED"
+  integration_http_method = "GET"
+  connection_id           = aws_apigatewayv2_vpc_link.this.id
+  integration_target      = aws_lb.private_alb.arn
+  uri                     = "https://acm.${var.domain_name}"
+  timeout_milliseconds    = 29000
+  cache_key_parameters    = []
+  request_parameters      = {}
+  content_handling        = null
+  credentials             = null
+  passthrough_behavior    = "WHEN_NO_MATCH"
+  request_templates       = {}
+}
+### Method Response
+resource "aws_api_gateway_method_response" "no_import_https_acm_get" {
+  rest_api_id             = aws_api_gateway_rest_api.no_import.id
+  resource_id             = aws_api_gateway_resource.no_import_https_acm.id
+  http_method             = aws_api_gateway_method.no_import_https_acm_get.http_method
+  status_code         = "200"
+  response_models = {
+    "application/json" = "Empty"
+  }
+  response_parameters = {}
+}
+
+/************************************************************
+Method - https/pca GET
+************************************************************/
+### Method Request
+resource "aws_api_gateway_method" "no_import_https_pca_get" {
+  rest_api_id          = aws_api_gateway_rest_api.no_import.id
+  resource_id          = aws_api_gateway_resource.no_import_https_pca.id
+  http_method          = "GET"
+  authorization        = "NONE"
+  authorization_scopes = []
+  authorizer_id        = null
+  api_key_required     = false
+  request_validator_id = null
+  operation_name       = null
+  request_parameters   = {}
+  request_models       = {}
+}
+### Integration Request
+resource "aws_api_gateway_integration" "no_import_https_pca_get" {
+  rest_api_id             = aws_api_gateway_rest_api.no_import.id
+  resource_id             = aws_api_gateway_resource.no_import_https_pca.id
+  http_method             = aws_api_gateway_method.no_import_https_pca_get.http_method
+  type                    = "HTTP_PROXY"
+  connection_type         = "VPC_LINK"
+  response_transfer_mode  = "BUFFERED"
+  integration_http_method = "GET"
+  connection_id           = aws_apigatewayv2_vpc_link.this.id
+  integration_target      = aws_lb.private_alb.arn
+  uri                     = "https://pca.${var.domain_name}"
+  timeout_milliseconds    = 29000
+  cache_key_parameters    = []
+  request_parameters      = {}
+  content_handling        = null
+  credentials             = null
+  passthrough_behavior    = "WHEN_NO_MATCH"
+  request_templates       = {}
+}
+### Method Response
+resource "aws_api_gateway_method_response" "no_import_https_pca_get" {
+  rest_api_id             = aws_api_gateway_rest_api.no_import.id
+  resource_id             = aws_api_gateway_resource.no_import_https_pca.id
+  http_method             = aws_api_gateway_method.no_import_https_pca_get.http_method
+  status_code         = "200"
+  response_models = {
+    "application/json" = "Empty"
+  }
+  response_parameters = {}
+}
+
+/************************************************************
+Method - https/selfsigned GET
+************************************************************/
+### Method Request
+resource "aws_api_gateway_method" "no_import_https_selfsigned_get" {
+  rest_api_id          = aws_api_gateway_rest_api.no_import.id
+  resource_id          = aws_api_gateway_resource.no_import_https_selfsigned.id
+  http_method          = "GET"
+  authorization        = "NONE"
+  authorization_scopes = []
+  authorizer_id        = null
+  api_key_required     = false
+  request_validator_id = null
+  operation_name       = null
+  request_parameters   = {}
+  request_models       = {}
+}
+### Integration Request
+resource "aws_api_gateway_integration" "no_import_https_selfsigned_get" {
+  rest_api_id             = aws_api_gateway_rest_api.no_import.id
+  resource_id             = aws_api_gateway_resource.no_import_https_selfsigned.id
+  http_method             = aws_api_gateway_method.no_import_https_selfsigned_get.http_method
+  type                    = "HTTP_PROXY"
+  connection_type         = "VPC_LINK"
+  response_transfer_mode  = "BUFFERED"
+  integration_http_method = "GET"
+  connection_id           = aws_apigatewayv2_vpc_link.this.id
+  integration_target      = aws_lb.private_alb.arn
+  uri                     = "https://selfsigned.${var.domain_name}"
+  timeout_milliseconds    = 29000
+  cache_key_parameters    = []
+  request_parameters      = {}
+  content_handling        = null
+  credentials             = null
+  passthrough_behavior    = "WHEN_NO_MATCH"
+  request_templates       = {}
+}
+### Method Response
+resource "aws_api_gateway_method_response" "no_import_https_selfsigned_get" {
+  rest_api_id             = aws_api_gateway_rest_api.no_import.id
+  resource_id             = aws_api_gateway_resource.no_import_https_selfsigned.id
+  http_method             = aws_api_gateway_method.no_import_https_selfsigned_get.http_method
+  status_code         = "200"
+  response_models = {
+    "application/json" = "Empty"
+  }
+  response_parameters = {}
+}
+
 # /************************************************************
 # Deployment
 # ************************************************************/
