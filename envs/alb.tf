@@ -65,8 +65,7 @@ resource "aws_lb_listener" "http" {
     Name = "http-listener"
   }
   default_action {
-    order            = 1
-    target_group_arn = null
+    order            = 50000 # maximum
     type             = "fixed-response"
     fixed_response {
       content_type = "text/plain"
