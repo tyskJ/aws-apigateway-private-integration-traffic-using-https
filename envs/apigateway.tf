@@ -403,9 +403,24 @@ Deployment
 resource "aws_api_gateway_deployment" "no_import_deployment" {
   for_each = toset(var.deployments_no_import)
   depends_on = [
-    aws_api_gateway_method.no_import_proxy_any,
-    aws_api_gateway_integration.no_import_proxy_any,
-    aws_api_gateway_method_response.no_import_proxy_any
+    aws_api_gateway_method.no_import_http_acm_get,
+    aws_api_gateway_integration.no_import_http_acm_get,
+    aws_api_gateway_method_response.no_import_http_acm_get,
+    aws_api_gateway_method.no_import_http_pca_get,
+    aws_api_gateway_integration.no_import_http_pca_get,
+    aws_api_gateway_method_response.no_import_http_pca_get,
+    aws_api_gateway_method.no_import_http_selfsigned_get,
+    aws_api_gateway_integration.no_import_http_selfsigned_get,
+    aws_api_gateway_method_response.no_import_http_selfsigned_get,
+    aws_api_gateway_method.no_import_https_acm_get,
+    aws_api_gateway_integration.no_import_https_acm_get,
+    aws_api_gateway_method_response.no_import_https_acm_get,
+    aws_api_gateway_method.no_import_https_pca_get,
+    aws_api_gateway_integration.no_import_https_pca_get,
+    aws_api_gateway_method_response.no_import_https_pca_get,
+    aws_api_gateway_method.no_import_https_selfsigned_get,
+    aws_api_gateway_integration.no_import_https_selfsigned_get,
+    aws_api_gateway_method_response.no_import_https_selfsigned_get,
   ]
   rest_api_id = aws_api_gateway_rest_api.no_import.id
   description = "Deployment Version ${each.key}"
