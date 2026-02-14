@@ -142,10 +142,10 @@ resource "aws_api_gateway_integration" "no_import_http_acm_get" {
 }
 ### Method Response
 resource "aws_api_gateway_method_response" "no_import_http_acm_get" {
-  rest_api_id             = aws_api_gateway_rest_api.no_import.id
-  resource_id             = aws_api_gateway_resource.no_import_http_acm.id
-  http_method             = aws_api_gateway_method.no_import_http_acm_get.http_method
-  status_code         = "200"
+  rest_api_id = aws_api_gateway_rest_api.no_import.id
+  resource_id = aws_api_gateway_resource.no_import_http_acm.id
+  http_method = aws_api_gateway_method.no_import_http_acm_get.http_method
+  status_code = "200"
   response_models = {
     "application/json" = "Empty"
   }
@@ -191,10 +191,10 @@ resource "aws_api_gateway_integration" "no_import_http_pca_get" {
 }
 ### Method Response
 resource "aws_api_gateway_method_response" "no_import_http_pca_get" {
-  rest_api_id             = aws_api_gateway_rest_api.no_import.id
-  resource_id             = aws_api_gateway_resource.no_import_http_pca.id
-  http_method             = aws_api_gateway_method.no_import_http_pca_get.http_method
-  status_code         = "200"
+  rest_api_id = aws_api_gateway_rest_api.no_import.id
+  resource_id = aws_api_gateway_resource.no_import_http_pca.id
+  http_method = aws_api_gateway_method.no_import_http_pca_get.http_method
+  status_code = "200"
   response_models = {
     "application/json" = "Empty"
   }
@@ -240,10 +240,10 @@ resource "aws_api_gateway_integration" "no_import_http_selfsigned_get" {
 }
 ### Method Response
 resource "aws_api_gateway_method_response" "no_import_http_selfsigned_get" {
-  rest_api_id             = aws_api_gateway_rest_api.no_import.id
-  resource_id             = aws_api_gateway_resource.no_import_http_selfsigned.id
-  http_method             = aws_api_gateway_method.no_import_http_selfsigned_get.http_method
-  status_code         = "200"
+  rest_api_id = aws_api_gateway_rest_api.no_import.id
+  resource_id = aws_api_gateway_resource.no_import_http_selfsigned.id
+  http_method = aws_api_gateway_method.no_import_http_selfsigned_get.http_method
+  status_code = "200"
   response_models = {
     "application/json" = "Empty"
   }
@@ -289,10 +289,10 @@ resource "aws_api_gateway_integration" "no_import_https_acm_get" {
 }
 ### Method Response
 resource "aws_api_gateway_method_response" "no_import_https_acm_get" {
-  rest_api_id             = aws_api_gateway_rest_api.no_import.id
-  resource_id             = aws_api_gateway_resource.no_import_https_acm.id
-  http_method             = aws_api_gateway_method.no_import_https_acm_get.http_method
-  status_code         = "200"
+  rest_api_id = aws_api_gateway_rest_api.no_import.id
+  resource_id = aws_api_gateway_resource.no_import_https_acm.id
+  http_method = aws_api_gateway_method.no_import_https_acm_get.http_method
+  status_code = "200"
   response_models = {
     "application/json" = "Empty"
   }
@@ -338,10 +338,10 @@ resource "aws_api_gateway_integration" "no_import_https_pca_get" {
 }
 ### Method Response
 resource "aws_api_gateway_method_response" "no_import_https_pca_get" {
-  rest_api_id             = aws_api_gateway_rest_api.no_import.id
-  resource_id             = aws_api_gateway_resource.no_import_https_pca.id
-  http_method             = aws_api_gateway_method.no_import_https_pca_get.http_method
-  status_code         = "200"
+  rest_api_id = aws_api_gateway_rest_api.no_import.id
+  resource_id = aws_api_gateway_resource.no_import_https_pca.id
+  http_method = aws_api_gateway_method.no_import_https_pca_get.http_method
+  status_code = "200"
   response_models = {
     "application/json" = "Empty"
   }
@@ -387,43 +387,43 @@ resource "aws_api_gateway_integration" "no_import_https_selfsigned_get" {
 }
 ### Method Response
 resource "aws_api_gateway_method_response" "no_import_https_selfsigned_get" {
-  rest_api_id             = aws_api_gateway_rest_api.no_import.id
-  resource_id             = aws_api_gateway_resource.no_import_https_selfsigned.id
-  http_method             = aws_api_gateway_method.no_import_https_selfsigned_get.http_method
-  status_code         = "200"
+  rest_api_id = aws_api_gateway_rest_api.no_import.id
+  resource_id = aws_api_gateway_resource.no_import_https_selfsigned.id
+  http_method = aws_api_gateway_method.no_import_https_selfsigned_get.http_method
+  status_code = "200"
   response_models = {
     "application/json" = "Empty"
   }
   response_parameters = {}
 }
 
-# /************************************************************
-# Deployment
-# ************************************************************/
-# resource "aws_api_gateway_deployment" "no_import_deployment" {
-#   for_each = toset(var.deployments)
-#   depends_on = [
-#     aws_api_gateway_method.no_import_proxy_any,
-#     aws_api_gateway_integration.no_import_proxy_any,
-#     aws_api_gateway_method_response.no_import_proxy_any
-#   ]
-#   rest_api_id = aws_api_gateway_rest_api.no_import.id
-#   description = "Deployment Version ${each.key}"
-#   lifecycle {
-#     create_before_destroy = true
-#   }
-# }
+/************************************************************
+Deployment
+************************************************************/
+resource "aws_api_gateway_deployment" "no_import_deployment" {
+  for_each = toset(var.deployments_no_import)
+  depends_on = [
+    aws_api_gateway_method.no_import_proxy_any,
+    aws_api_gateway_integration.no_import_proxy_any,
+    aws_api_gateway_method_response.no_import_proxy_any
+  ]
+  rest_api_id = aws_api_gateway_rest_api.no_import.id
+  description = "Deployment Version ${each.key}"
+  lifecycle {
+    create_before_destroy = true
+  }
+}
 
-# /************************************************************
-# Stage
-# ************************************************************/
-# resource "aws_api_gateway_stage" "no_import_stage" {
-#   rest_api_id           = aws_api_gateway_rest_api.no_import.id
-#   deployment_id         = aws_api_gateway_deployment.no_import_deployment[local.deployment].id
-#   stage_name            = "prod"
-#   description           = "Production Stage"
-#   cache_cluster_enabled = false
-#   tags = {
-#     Name = "prod"
-#   }
-# }
+/************************************************************
+Stage
+************************************************************/
+resource "aws_api_gateway_stage" "no_import_stage" {
+  rest_api_id           = aws_api_gateway_rest_api.no_import.id
+  deployment_id         = aws_api_gateway_deployment.no_import_deployment[local.deployment_no_import].id
+  stage_name            = "prod"
+  description           = "Production Stage"
+  cache_cluster_enabled = false
+  tags = {
+    Name = "prod"
+  }
+}

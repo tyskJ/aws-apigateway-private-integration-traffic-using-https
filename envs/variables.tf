@@ -10,24 +10,24 @@ variable "public_hostedzone_id" {
   type = string
 }
 
-variable "deployments" {
-  description = "List of deployments, this is used to build the deployment ids"
+variable "deployments_no_import" {
+  description = "List of deployments no import api, this is used to build the deployment ids"
   default     = ["v1"]
   type        = list(string)
 }
 
-variable "rollback" {
-  description = "Deployment RollBack Flag"
+variable "rollback_no_import" {
+  description = "Deployment RollBack Flag no import api"
   default     = false
   type        = bool
 }
 
-variable "reverse_ids" {
-  description = "Set RollBack Deployment generation number"
+variable "reverse_ids_no_import" {
+  description = "Set RollBack Deployment generation number no import api"
   default     = 1
   type        = number
   validation {
-    condition     = length(var.deployments) >= var.reverse_ids
+    condition     = length(var.deployments_no_import) >= var.reverse_ids_no_import
     error_message = "Must less than deployments length minus 1"
   }
 }
