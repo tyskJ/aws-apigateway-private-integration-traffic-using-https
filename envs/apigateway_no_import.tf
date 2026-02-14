@@ -276,6 +276,9 @@ resource "aws_api_gateway_integration" "no_import_https_selfsigned_get" {
   credentials             = null
   passthrough_behavior    = "WHEN_NO_MATCH"
   request_templates       = {}
+  tls_config {
+    insecure_skip_verification = true
+  }
 }
 ### Method Response
 resource "aws_api_gateway_method_response" "no_import_https_selfsigned_get" {
