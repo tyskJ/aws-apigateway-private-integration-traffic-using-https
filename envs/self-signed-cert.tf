@@ -56,8 +56,9 @@ resource "tls_locally_signed_cert" "server" {
 Import to ACM
 ************************************************************/
 resource "aws_acm_certificate" "selfsigned_cert" {
-  private_key      = tls_private_key.server.private_key_pem
-  certificate_body = tls_locally_signed_cert.server.cert_pem
+  private_key       = tls_private_key.server.private_key_pem
+  certificate_body  = tls_locally_signed_cert.server.cert_pem
+  certificate_chain = tls_self_signed_cert.ca.cert_pem
   tags = {
     Name = "internal-alb-selfsigned-certificate"
   }
