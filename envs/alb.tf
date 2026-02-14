@@ -171,6 +171,28 @@ resource "aws_lb_listener_rule" "https_for_acm" {
   }
 }
 
+resource "aws_lb_listener_rule" "https_for_selfsigned" {
+  listener_arn = aws_lb_listener.https.arn
+  priority     = 2
+  tags = {
+    Name = "for-selfsigned"
+  }
+  condition {
+    host_header {
+      values = ["selfsigned.${var.domain_name}"]
+    }
+  }
+  action {
+    order = 1
+    type  = "fixed-response"
+    fixed_response {
+      status_code  = "200"
+      content_type = "text/plain"
+      message_body = "Success For Self-Signed Verification Response !!"
+    }
+  }
+}
+
 /************************************************************
 Listener Certificates
 ************************************************************/
