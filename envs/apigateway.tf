@@ -31,3 +31,11 @@ resource "aws_api_gateway_rest_api" "regional_target_ssl_by_acm" {
     Name = "regional-rest-api-target-ssl-acm"
   }
 }
+
+/************************************************************
+Resource Policy
+************************************************************/
+resource "aws_api_gateway_rest_api_policy" "resource_policy_for_regional_target_ssl_by_acm" {
+  rest_api_id = aws_api_gateway_rest_api.regional_target_ssl_by_acm.id
+  policy      = data.aws_iam_policy_document.regional_target_ssl_by_acm.json
+}
