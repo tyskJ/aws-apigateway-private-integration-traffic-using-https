@@ -12,7 +12,7 @@ variable "public_hostedzone_id" {
 
 variable "deployments" {
   description = "List of deployments, this is used to build the deployment ids"
-  default     = ["v1", "v2"]
+  default     = ["v1"]
   type        = list(string)
 }
 
