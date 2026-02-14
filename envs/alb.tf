@@ -100,31 +100,9 @@ resource "aws_lb_listener_rule" "http_for_acm" {
   }
 }
 
-resource "aws_lb_listener_rule" "http_for_pca" {
-  listener_arn = aws_lb_listener.http.arn
-  priority     = 2
-  tags = {
-    Name = "for-pca"
-  }
-  condition {
-    host_header {
-      values = ["pca.${var.domain_name}"]
-    }
-  }
-  action {
-    order = 1
-    type  = "fixed-response"
-    fixed_response {
-      status_code  = "200"
-      content_type = "text/plain"
-      message_body = "Success For PCA Verification Response !!"
-    }
-  }
-}
-
 resource "aws_lb_listener_rule" "http_for_selfsigned" {
   listener_arn = aws_lb_listener.http.arn
-  priority     = 3
+  priority     = 2
   tags = {
     Name = "for-selfsigned"
   }
