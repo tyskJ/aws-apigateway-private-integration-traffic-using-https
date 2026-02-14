@@ -167,7 +167,28 @@ resource "aws_lb_listener" "https" {
     }
   }
 }
-import {
-  to = aws_lb_listener.https
-  id = "arn:aws:elasticloadbalancing:ap-northeast-1:934363622821:listener/app/private-alb/69197ca184379490/2f9572542d96179e"
+
+/************************************************************
+Listener Rule - HTTPS
+************************************************************/
+resource "aws_lb_listener_rule" "https_for_acm" {
+  listener_arn = aws_lb_listener.https.arn
+  priority     = 1
+  tags = {
+    Name = "for-acm"
+  }
+  condition {
+    host_header {
+      values = ["acm.${var.domain_name}"]
+    }
+  }
+  action {
+    order = 1
+    type  = "fixed-response"
+    fixed_response {
+      status_code  = "200"
+      content_type = "text/plain"
+      message_body = "Success For ACM Verification Response !!"
+    }
+  }
 }
