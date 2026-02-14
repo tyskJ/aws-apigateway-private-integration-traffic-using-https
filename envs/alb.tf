@@ -69,8 +69,12 @@ resource "aws_lb_listener" "http" {
     type             = "fixed-response"
     fixed_response {
       content_type = "text/plain"
-      message_body = "Forbidden..."
-      status_code  = "403"
+      message_body = "Nothing to match"
+      status_code  = "404"
     }
   }
 }
+
+/************************************************************
+Listener Rule - HTTP
+************************************************************/
