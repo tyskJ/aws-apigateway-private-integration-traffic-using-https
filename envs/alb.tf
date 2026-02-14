@@ -143,3 +143,31 @@ resource "aws_lb_listener_rule" "http_for_selfsigned" {
     }
   }
 }
+
+/************************************************************
+Listener - HTTPS
+************************************************************/
+resource "aws_lb_listener" "https" {
+  load_balancer_arn                    = aws_lb.private_alb.arn
+  port                                 = 443
+  protocol                             = "HTTPS"
+  routing_http_response_server_enabled = true
+  certificate_arn                      = aws_acm_certificate_validation.public_cert_validation.certificate_arn
+  ssl_policy                           = "ELBSecurityPolicy-TLS13-1-2-Res-PQ-2025-09"
+  tags = {
+    Name = "https-listener"
+  }
+  default_action {
+    order = 50000 # maximum
+    type  = "fixed-response"
+    fixed_response {
+      content_type = "text/plain"
+      message_body = "Nothing to match"
+      status_code  = "404"
+    }
+  }
+}
+import {
+  to = aws_lb_listener.https
+  id = "arn:aws:elasticloadbalancing:ap-northeast-1:934363622821:listener/app/private-alb/69197ca184379490/2f9572542d96179e"
+}
