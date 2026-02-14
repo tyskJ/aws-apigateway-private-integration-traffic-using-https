@@ -192,3 +192,11 @@ resource "aws_lb_listener_rule" "https_for_acm" {
     }
   }
 }
+
+/************************************************************
+Listener Certificates
+************************************************************/
+resource "aws_lb_listener_certificate" "selfsigned_cert" {
+  listener_arn    = aws_lb_listener.https.arn
+  certificate_arn = aws_acm_certificate.selfsigned_cert.arn
+}
