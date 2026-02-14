@@ -65,8 +65,8 @@ resource "aws_lb_listener" "http" {
     Name = "http-listener"
   }
   default_action {
-    order            = 50000 # maximum
-    type             = "fixed-response"
+    order = 50000 # maximum
+    type  = "fixed-response"
     fixed_response {
       content_type = "text/plain"
       message_body = "Nothing to match"
@@ -78,3 +78,68 @@ resource "aws_lb_listener" "http" {
 /************************************************************
 Listener Rule - HTTP
 ************************************************************/
+resource "aws_lb_listener_rule" "http_for_acm" {
+  listener_arn = aws_lb_listener.http.arn
+  priority     = 1
+  tags = {
+    Name = "for-acm"
+  }
+  condition {
+    host_header {
+      values = ["acm.${var.domain_name}"]
+    }
+  }
+  action {
+    order = 1
+    type  = "fixed-response"
+    fixed_response {
+      status_code  = "200"
+      content_type = "text/plain"
+      message_body = "Success For ACM Verification Response !!"
+    }
+  }
+}
+
+resource "aws_lb_listener_rule" "http_for_pca" {
+  listener_arn = aws_lb_listener.http.arn
+  priority     = 2
+  tags = {
+    Name = "for-pca"
+  }
+  condition {
+    host_header {
+      values = ["pca.${var.domain_name}"]
+    }
+  }
+  action {
+    order = 1
+    type  = "fixed-response"
+    fixed_response {
+      status_code  = "200"
+      content_type = "text/plain"
+      message_body = "Success For PCA Verification Response !!"
+    }
+  }
+}
+
+resource "aws_lb_listener_rule" "http_for_selfsigned" {
+  listener_arn = aws_lb_listener.http.arn
+  priority     = 3
+  tags = {
+    Name = "for-selfsigned"
+  }
+  condition {
+    host_header {
+      values = ["selfsigned.${var.domain_name}"]
+    }
+  }
+  action {
+    order = 1
+    type  = "fixed-response"
+    fixed_response {
+      status_code  = "200"
+      content_type = "text/plain"
+      message_body = "Success For Self-Signed Verification Response !!"
+    }
+  }
+}
