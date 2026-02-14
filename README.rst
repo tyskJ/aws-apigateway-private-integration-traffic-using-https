@@ -91,6 +91,7 @@ Amazon API Gateway のプライベート統合トラフィックを HTTPS 化す
 .. code-block:: bash
     
     cat <<EOF > aws.auto.tfvars
+    source_ip = ["アクセス元IPアドレス(CIDR形式)"]
     domain_name = "ドメイン名"
     public_hostedzone_id = "Route 53パブリックホストゾーンID"
     EOF
