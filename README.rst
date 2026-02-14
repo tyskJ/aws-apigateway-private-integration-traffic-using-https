@@ -18,7 +18,7 @@ Amazon API Gateway のプライベート統合トラフィックを HTTPS 化す
 =====================================================================
 * macOS Tahoe ( v26.2 )
 * Visual Studio Code 1.108.2
-* Terraform v1.14.1
+* Terraform v1.14.5
 * aws-cli/2.32.10 Python/3.13.9 Darwin/25.2.0 exe/arm64
 
 フォルダ構成
